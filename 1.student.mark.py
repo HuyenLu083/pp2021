@@ -6,20 +6,24 @@ def numOfStudent():
     std_num = int(input("Enter number of student in the class: "))
     return std_num
 
+
 def studentInfo():
-    std_id = input("Enter student id: ")
+    std_id = input("Enter student ID: ")
     std_name = input("Enter student name: ")
     std_dob = input("Enter student date of birth: ")
     return std_id, std_name, std_dob
+
 
 def numOfCourse():
     course_num = int(input("Enter number of courses: "))
     return course_num
 
+
 def courseInfo():
-    course_id = input("Enter course id: ")
+    course_id = input("Enter course ID: ")
     course_name = input("Enter course name: ")
     return course_id, course_name
+
 
 def studentMarks(students, course, marks):
     for i in range(len(students)):
@@ -27,12 +31,14 @@ def studentMarks(students, course, marks):
         mark = float(input("Enter " + students[i].get("name") + "'s mark \n"))
         marks[i].update({course: mark})
 
+        
 def displayCourses():
     print("Course information: \n")
     for i in range(len(courses)):
-        print("Course id: " + courses[i].get("id") + "\n")
+        print("Course ID: " + courses[i].get("id") + "\n")
         print("Course name: " + courses[i].get("name") + "\n")
 
+        
 def displayStudents():
     print("Student information: \n")
     for i in range(len(students)):
@@ -40,6 +46,7 @@ def displayStudents():
         print("Student name: " + students[i].get("name") + "\n")
         print("Student DoB: " + students[i].get("dob") + "\n")
 
+        
 def displayMarks():
     print("Student marks for this course\n")
     for i in range(len(students)):
@@ -62,9 +69,9 @@ if __name__ == "__main__":
 
     x = 'y'
     while x == 'y':
-        sel_course_id = input("Select a course id: ")
+        sel_course_id = input("Select a course ID: ")
         for i in range(len(courses)):
-            if (courses[i].get("id") == sel_course_id):
+            if courses[i].get("id") == sel_course_id:
                 print("course name: " + courses[i].get("name") + "\n")
                 studentMarks(students, courses[i].get("name"), marks)
         x = input("Do you want to select another course? y/n: ")
