@@ -1,8 +1,8 @@
 class Student:
-    def __init__(self):
-        self.id = input("Enter student ID: ")
-        self.name = input("Enter student name: ")
-        self.dob = input("Enter student date of birth: ")
+    def __init__(self, id, name, dob):
+        self.id = id
+        self.name = name
+        self.dob = dob
         self.marks = {}
 
     def get_id(self):
@@ -40,9 +40,9 @@ class Student:
 
 
 class Course:
-    def __init__(self):
-        self.id = input("Enter course ID: ")
-        self.name = input("Enter course name: ")
+    def __init__(self, id, name):
+        self.id = id
+        self.name = name
 
     def get_id(self):
         return self.id
@@ -72,6 +72,14 @@ def numOfStudent():
             print("Invalid number.")
 
 
+def studentInfo():
+    std_id = input("Enter student ID: ")
+    std_name = input("Enter student name: ")
+    std_dob = input("Enter student date of birth: ")
+    print("-------")
+    return std_id, std_name, std_dob
+
+
 def numOfCourse():
     while True:
         try:
@@ -80,6 +88,13 @@ def numOfCourse():
             return course_num
         except ValueError:
             print("Err: Invalid number.")
+
+
+def courseInfo():
+    course_id = input("Enter course ID: ")
+    course_name = input("Enter course name: ")
+    print("-------")
+    return course_id, course_name
 
 
 def findCourseName(courses, course_id):
@@ -96,13 +111,13 @@ if __name__ == "__main__":
     student_num = numOfStudent()
     print(student_num)
     for i in range(0, student_num):
-        students.append(Student())
-        print("-------")
+        id, name, dob = studentInfo()
+        students.append(Student(id, name, dob))
 
     course_num = numOfCourse()
     for i in range(0, course_num):
-        courses.append(Course())
-        print("-------")
+        id, name = courseInfo()
+        courses.append(Course(id, name))
 
     print("Display students information:\n")
     for student in students:
