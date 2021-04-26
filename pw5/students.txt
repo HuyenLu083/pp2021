@@ -1,0 +1,12 @@
+Student ID: 1
+Student name: huyen
+Student DoB: 12
+-------
+Student ID: 2
+Student name: bong
+Student DoB: 13
+-------
+Student ID: 3
+Student name: lu
+Student DoB: 14
+-------
