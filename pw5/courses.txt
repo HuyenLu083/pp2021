@@ -1,8 +1,12 @@
 Course ID: a1
-Course name: chem
+Course name: Math
 Course credit: 3
 -------
 Course ID: a2
-Course name: math
+Course name: Chemistry
 Course credit: 4
+-------
+Course ID: a3
+Course name: Physics
+Course credit: 2
 -------

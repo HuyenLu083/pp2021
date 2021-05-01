@@ -43,14 +43,14 @@ class Student:
         self.gpa = math.floor((self.gpa / sum_credits) * 10) / 10
         return self.gpa
 
-    def display_mark(self, stdscr, courses, course):
+    def display_mark(self, courses, course):
         for i in range(len(courses)):
             if len(self.marks[0]) > i:
                 if self.marks[0][i] == course:
-                    stdscr.addstr(f"{self.name} 's mark: {self.marks[1][i]}\n")
+                    return f"{self.name} 's mark for course {course}: {self.marks[1][i]}\n"
                     break
             else:
-                stdscr.addstr(f"{self.name} 's mark: none\n")
+                return f"{self.name} 's mark: none\n"
                 break
 
     def display_student(self):

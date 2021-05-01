@@ -3,42 +3,50 @@ from input import *
 import zipfile
 import os.path
 
+
 menu = ["Add Student", "Add Course", "Add Mark",
         "Students List", "Courses List", "Marks List", "Sort Student By GPA",
         "Exit"]
 
 
 def compression():
-    with zipfile.ZipFile("student.dat", "r+", compression=zipfile.ZIP_DEFLATED) as my_zip:
-        my_zip.write("student.txt")
+    with zipfile.ZipFile("student.dat", "w", compression=zipfile.ZIP_DEFLATED) as my_zip:
+        my_zip.write("students.txt")
         my_zip.write("courses.txt")
         my_zip.write("marks.txt")
 
 
 def decompression(stdscr):
     if os.path.exists("student.dat"):
-        with zipfile.ZipFile("student.dat", "r+") as my_zip:
+        with zipfile.ZipFile("student.dat", "r") as my_zip:
             my_zip.extractall()
-            with my_zip.open("students.txt") as std_file:
+            with open("students.txt") as std_file:
                 stdscr.addstr(std_file.read())
-            with my_zip.open("courses.txt") as crs_file:
+            with open("courses.txt") as crs_file:
                 stdscr.addstr(crs_file.read())
-            with my_zip.open("marks.txt") as mrk_file:
+            with open("marks.txt") as mrk_file:
                 stdscr.addstr(mrk_file.read())
             stdscr.refresh()
             stdscr.getch()
 
 
 def write_student_file(students):
-    with open("students.txt", "r+") as student_file:
+    with open("students.txt", "w") as student_file:
         for student in students:
             student_file.write(student.display_student())
 
 
 def write_course_file(courses):
-    with open("courses.txt", "r+") as course_file:
+    with open("courses.txt", "w") as course_file:
         for course in courses:
             course_file.write(course.display_course())
+
+
+def write_mark_file(students, courses):
+    with open("marks.txt", "w") as mark_file:
+        for student in students:
+            for course in courses:
+                mark_file.write(student.display_mark(courses, course.name))
 
 
 def sortByGpa(students, stdsrc):
@@ -112,8 +120,8 @@ def system(students, courses, stdscr):
             sel_course = findCourseName(courses, sel_course_id)
             sel_credit = findCourseCredit(courses, sel_course_id)
             stdscr.addstr(4, 0, f"Course name: {sel_course}")
-            for student in students:
-                mark = my_input(stdscr, 5, 0, f"Enter {student.name}'s mark:")
+            for i, student in enumerate(students):
+                mark = my_input(stdscr, 5 + 2*i, 0, f"Enter {student.name}'s mark:")
                 student.set_mark(sel_course, mark, sel_credit)
             stdscr.refresh()
             stdscr.getch()
@@ -147,7 +155,7 @@ def system(students, courses, stdscr):
             stdscr.addstr(4, 0, f"Course name: {sel_course}")
             stdscr.addstr(5, 0, f"Display students' marks of course {sel_course}:\n")
             for student in students:
-                student.display_mark(stdscr, courses, sel_course)
+                stdscr.addstr(student.display_mark(courses, sel_course))
             stdscr.refresh()
             stdscr.getch()
 
