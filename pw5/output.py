@@ -33,20 +33,20 @@ def decompression(stdscr):
 def write_student_file(students):
     with open("students.txt", "w") as student_file:
         for student in students:
-            student_file.write(student.display_student())
+            student_file.write(student.get_student_info())
 
 
 def write_course_file(courses):
     with open("courses.txt", "w") as course_file:
         for course in courses:
-            course_file.write(course.display_course())
+            course_file.write(course.get_course_info())
 
 
 def write_mark_file(students, courses):
     with open("marks.txt", "w") as mark_file:
         for student in students:
             for course in courses:
-                mark_file.write(student.display_mark(courses, course.name))
+                mark_file.write(student.get_mark(courses, course.name))
 
 
 def sortByGpa(students, stdsrc):
@@ -132,7 +132,7 @@ def system(students, courses, stdscr):
             stdscr.addstr(1, 0, f"You chose {menu[current_row]}", curses.color_pair(2))
             stdscr.addstr(2, 0, "Display student list:\n")
             for student in students:
-                stdscr.addstr(student.display_student())
+                stdscr.addstr(student.get_student_info())
             stdscr.refresh()
             stdscr.getch()
 
@@ -142,7 +142,7 @@ def system(students, courses, stdscr):
             stdscr.addstr(1, 0, f"You chose {menu[current_row]}", curses.color_pair(2))
             stdscr.addstr(2, 0, "Display course list:\n")
             for course in courses:
-                stdscr.addstr(course.display_course())
+                stdscr.addstr(course.get_course_info())
             stdscr.refresh()
             stdscr.getch()
 
@@ -153,16 +153,16 @@ def system(students, courses, stdscr):
             sel_course_id = my_input(stdscr, 2, 0, "Select a course id:")
             sel_course = findCourseName(courses, sel_course_id)
             stdscr.addstr(4, 0, f"Course name: {sel_course}")
-            stdscr.addstr(5, 0, f"Display students' marks of course {sel_course}:\n")
+            stdscr.addstr(5, 0, f"Display students' marks:\n")
             for student in students:
-                stdscr.addstr(student.display_mark(courses, sel_course))
+                stdscr.addstr(student.get_mark(courses, sel_course))
             stdscr.refresh()
             stdscr.getch()
 
         elif key == curses.KEY_ENTER or key in [10, 13] and current_row == 6:
             stdscr.clear()
             curses.echo()
-            stdscr.addstr(1, 1, f"You chose {menu[current_row]}", curses.color_pair(2))
+            stdscr.addstr(1, 0, f"You chose {menu[current_row]}", curses.color_pair(2))
             for student in students:
                 student.get_gpa(courses)
             stdscr.addstr(2, 0, "Display student list by GPA descending:\n")

@@ -188,8 +188,8 @@ def main(stdscr):
             sel_course = findCourseName(courses, sel_course_id)
             sel_credit = findCourseCredit(courses, sel_course_id)
             stdscr.addstr(4, 0, f"Course name: {sel_course}")
-            for student in students:
-                mark = my_input(stdscr, 5, 0, f"Enter {student.name}'s mark:")
+            for i, student in enumerate(students):
+                mark = my_input(stdscr, 5 + 2*i, 0, f"Enter {student.name}'s mark:")
                 student.set_mark(sel_course, mark, sel_credit)
             stdscr.refresh()
             stdscr.getch()
@@ -230,7 +230,7 @@ def main(stdscr):
         elif key == curses.KEY_ENTER or key in [10, 13] and current_row == 6:
             stdscr.clear()
             curses.echo()
-            stdscr.addstr(1, 1, f"You chose {menu[current_row]}", curses.color_pair(2))
+            stdscr.addstr(1, 0, f"You chose {menu[current_row]}", curses.color_pair(2))
             for student in students:
                 student.get_gpa(courses)
             stdscr.addstr(2, 0, "Display student list by GPA descending:\n")

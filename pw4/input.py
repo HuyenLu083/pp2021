@@ -1,26 +1,6 @@
 import curses
 
 
-def numOfStudent(stdscr):
-    while True:
-        try:
-            std_num = int(input("Enter number of student in the class: "))
-            print("-------")
-            return std_num
-        except ValueError:
-            print("Invalid number.")
-
-
-def numOfCourse():
-    while True:
-        try:
-            course_num = int(input("Enter number of courses: "))
-            print("-------")
-            return course_num
-        except ValueError:
-            print("Err: Invalid number.")
-
-
 def my_input(stdscr, r, c, prompt_string):
     curses.echo()
     stdscr.addstr(r, c, prompt_string)

@@ -43,17 +43,17 @@ class Student:
         self.gpa = math.floor((self.gpa / sum_credits) * 10) / 10
         return self.gpa
 
-    def display_mark(self, courses, course):
+    def get_mark(self, courses, course):
         for i in range(len(courses)):
             if len(self.marks[0]) > i:
                 if self.marks[0][i] == course:
-                    return f"{self.name} 's mark for course {course}: {self.marks[1][i]}\n"
+                    return f"{self.name}'s mark for course {course}: {self.marks[1][i]}\n"
                     break
             else:
-                return f"{self.name} 's mark: none\n"
+                return f"{self.name}'s mark: none\n"
                 break
 
-    def display_student(self):
+    def get_student_info(self):
         return (f"Student ID: {self.id}\n"
                 f"Student name: {self.name}\n"
                 f"Student DoB: {self.dob}\n"
@@ -84,7 +84,7 @@ class Course:
     def set_credit(self, credit):
         self.credit = credit
 
-    def display_course(self):
+    def get_course_info(self):
         return (f"Course ID: {self.id}\n"
                 f"Course name: {self.name}\n"
                 f"Course credit: {self.credit}\n"
