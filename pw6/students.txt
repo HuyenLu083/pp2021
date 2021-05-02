@@ -1,0 +1,8 @@
+Student ID: 1
+Student name: Lu Khanh Huyen
+Student DoB: 10/08/2001
+-------
+Student ID: 2
+Student name: lu khanh huyen
+Student DoB: 10/08/2001
+-------
