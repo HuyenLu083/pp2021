@@ -1,0 +1,8 @@
+Course ID: a1
+Course name: Chemistry
+Course credit: 4
+-------
+Course ID: a2
+Course name: Biology
+Course credit: 3
+-------
