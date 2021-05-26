@@ -8,6 +8,7 @@ def main(stdscr):
     system(students, courses, stdscr)
     write_student_file(students)
     write_course_file(courses)
+    write_mark_file(students, courses)
     compression(students, courses)
     decompression(stdscr)
 

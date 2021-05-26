@@ -23,6 +23,9 @@ def decompression(stdscr):
             courses = pickle.load(outfile)
             for course in courses:
                 stdscr.addstr(course.get_course_info())
+            for student in students:
+                for course in courses:
+                    stdscr.addstr(student.get_mark(courses, course.name))
             stdscr.refresh()
             stdscr.getch()
 
@@ -37,6 +40,13 @@ def write_course_file(courses):
     with open("courses.txt", "w") as course_file:
         for course in courses:
             course_file.write(course.get_course_info())
+
+
+def write_mark_file(students, courses):
+    with open("marks.txt", "w") as mark_file:
+        for student in students:
+            for course in courses:
+                mark_file.write(student.get_mark(courses, course.name))
 
 
 def sortByGpa(students, stdsrc):
